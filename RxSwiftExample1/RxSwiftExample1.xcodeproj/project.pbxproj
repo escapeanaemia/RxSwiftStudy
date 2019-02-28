@@ -12,6 +12,7 @@
 		5C3E661D2226D823005B64FC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5C3E661B2226D823005B64FC /* Main.storyboard */; };
 		5C3E661F2226D826005B64FC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5C3E661E2226D826005B64FC /* Assets.xcassets */; };
 		5C3E66222226D826005B64FC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5C3E66202226D826005B64FC /* LaunchScreen.storyboard */; };
+		5C3E662A2226DC01005B64FC /* example.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C3E66292226DC01005B64FC /* example.swift */; };
 		5C85BB49BD8D813C3CE8DE53 /* Pods_RxSwiftExample1.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7F0FF722CD5B7141EAE8B47 /* Pods_RxSwiftExample1.framework */; };
 /* End PBXBuildFile section */
 
@@ -23,6 +24,7 @@
 		5C3E661E2226D826005B64FC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5C3E66212226D826005B64FC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5C3E66232226D826005B64FC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5C3E66292226DC01005B64FC /* example.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = example.swift; sourceTree = "<group>"; };
 		A56B609029C78B073511B1D6 /* Pods-RxSwiftExample1.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RxSwiftExample1.release.xcconfig"; path = "Pods/Target Support Files/Pods-RxSwiftExample1/Pods-RxSwiftExample1.release.xcconfig"; sourceTree = "<group>"; };
 		D7F0FF722CD5B7141EAE8B47 /* Pods_RxSwiftExample1.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RxSwiftExample1.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E46B5A572D3EBC7BE703DD50 /* Pods-RxSwiftExample1.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RxSwiftExample1.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RxSwiftExample1/Pods-RxSwiftExample1.debug.xcconfig"; sourceTree = "<group>"; };
@@ -63,6 +65,7 @@
 			children = (
 				5C3E66172226D823005B64FC /* AppDelegate.swift */,
 				5C3E66192226D823005B64FC /* ViewController.swift */,
+				5C3E66292226DC01005B64FC /* example.swift */,
 				5C3E661B2226D823005B64FC /* Main.storyboard */,
 				5C3E661E2226D826005B64FC /* Assets.xcassets */,
 				5C3E66202226D826005B64FC /* LaunchScreen.storyboard */,
@@ -204,6 +207,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5C3E662A2226DC01005B64FC /* example.swift in Sources */,
 				5C3E661A2226D823005B64FC /* ViewController.swift in Sources */,
 				5C3E66182226D823005B64FC /* AppDelegate.swift in Sources */,
 			);
@@ -355,7 +359,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2Y6MEDAL5W;
 				INFOPLIST_FILE = RxSwiftExample1/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "escape-anaemia.RxSwiftExample1";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -371,7 +378,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2Y6MEDAL5W;
 				INFOPLIST_FILE = RxSwiftExample1/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "escape-anaemia.RxSwiftExample1";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
