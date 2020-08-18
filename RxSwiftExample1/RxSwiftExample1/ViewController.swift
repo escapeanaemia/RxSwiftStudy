@@ -29,6 +29,7 @@ class ViewController: UIViewController {
         // unowned -> 미소유 참조, 강력순환 참조를 벗어나기 위해 사용, nil이면 크래쉬가 생김
         self.searchBar.rx.text.orEmpty
             .debounce(RxTimeInterval.microseconds(5), scheduler: MainScheduler.instance)
+            .distinctUntilChanged()
             .filter{ !$0.isEmpty }
             .subscribe(onNext: { [unowned self] query in
                 self.shownCities = self.allCities.filter { $0.hasPrefix(query) }
