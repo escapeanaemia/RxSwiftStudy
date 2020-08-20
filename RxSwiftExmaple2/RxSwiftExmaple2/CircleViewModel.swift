@@ -11,7 +11,8 @@ import RxSwift
 import RxCocoa
 
 class CircleViewModel{
-    var centerVariable = Variable<CGPoint?>(.zero)
+//    var centerVariable = Variable<CGPoint?>(.zero)
+    var centerVariable = BehaviorRelay<CGPoint?>(value: .zero)
     var backgroundColorObservable : Observable<UIColor>!
     
     init(){
