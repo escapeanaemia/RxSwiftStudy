@@ -19,6 +19,8 @@ class ViewController: UIViewController {
     
     let disposeBag = DisposeBag()
     var provider : MoyaProvider<Github>!
+    var issueTrackerModel : IssueTrackerModel!
+    
     var latestRepositoryName:Observable<String>{
         return searchBar.rx.text.orEmpty
             .debounce(RxTimeInterval.microseconds(5), scheduler: MainScheduler.instance)
@@ -32,6 +34,18 @@ class ViewController: UIViewController {
     
     func setupRx(){
         provider = MoyaProvider<Github>()
+        
+        issueTrackerModel = IssueTrackerModel(provider: provider, repositoryName: latestRepositoryName)
+        issueTrackerModel.trackIssues()
+            .bind(to: tableView.rx.items){ tableView, row, item in
+                let cell = tableView.dequeueReusableCell(withIdentifier: "issueCell", for: IndexPath(row: row, section: 0))
+                cell.textLabel?.text = item.title
+                
+                return cell
+                
+        }
+        .disposed(by: self.disposeBag)
+        
         
         tableView.rx.itemSelected
             .subscribe(onNext:{ IndexPath in

@@ -12,6 +12,7 @@ import Mapper
 import Moya_ModelMapper
 import RxOptional
 import RxSwift
+import RxCocoa
 
 struct Repository: Mappable {
     let identifier: Int
@@ -38,21 +39,53 @@ struct Issue: Mappable {
         try title = map.from("title")
         try body = map.from("body")
     }
-}s
+}
 
 struct IssueTrackerModel {
     let provider: MoyaProvider<Github>
     let repositoryName: Observable<String>
     func trackIssues() -> Observable<[Issue]>{
+        let a = repositoryName.observeOn(MainScheduler.instance)
+            .flatMapLatest { (name) -> Observable<Repository?> in
+                print("Name: \(name)")
+                return self.findRepository(name: name)
+                
+        }
+        .flatMapLatest { repository -> Observable<[Issue]?> in
+            guard let repository = repository else { return Observable.just(nil) }
+
+            print("Repository: \(repository.fullName)")
+            return self.findIssues(repository: repository)
+        }
+        .replaceNilWith([])
         
+        return a
     }
+    
     internal func findIssues(repository: Repository) -> Observable<[Issue]?>{
-        return self.provider
-            .request(Github.issues(repositoryFullName: repository.fullName), completion: {_ in })
-        .debug()
+        let a = self.provider.rx.request(Github.issues(repositoryFullName: repository.fullName))
+//        let b = a.debug().mapOptional(to: [Issue])
+        let b = a.debug().mapOptional(to: [Issue].self).asObservable()
+        
+        return b
+    }
+    internal func findRepository(name: String) -> Observable<Repository?>{
+        let a = self.provider.rx.request(Github.repo(fullName: name)).debug().mapOptional(to: Repository.self).asObservable()
+        
+        return a
+    }
+    
+    /*
+    internal func findIssues(repository: Repository) -> Observable<[Issue]?>{
+        return self.provider.rx
+            .request(Github.issues(repositoryFullName: repository.fullName))
+            .debug()
             .mapArrayOptional(Issue.self)
     }
     internal func findRepository(name: String) -> Observable<Repository?> {
 
-    }
+        return self.provider.rx.request(Github.repo(fullName: name)).debug().mapO
+
+    }*/
+    
 }
